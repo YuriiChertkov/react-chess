@@ -25,12 +25,17 @@
   justify-content: center;
   align-items: center;
 }
+.cell img {
+  height: 50px;
+  width: 50px;
+  position: relative;
+}
 
 .black {
-  background-color: cadetblue;
+  background-color: rgb(135, 64, 17);
 }
 
 .white {
-  background-color: rgb(223, 132, 21);
+  background-color: rgb(187, 150, 104);
 }
 
