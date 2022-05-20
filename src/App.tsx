@@ -6,6 +6,7 @@ import { Timer } from "./components/Timer";
 import { Board } from "./models/Board";
 import { Colors } from "./models/Colors";
 import { Player } from "./models/Player";
+import { motion } from "framer-motion";
 
 const App = () => {
   const [board, setBoard] = useState(new Board());
@@ -37,12 +38,14 @@ const App = () => {
       restart={restart}
       currentPlayer={currentPlayer}
       />
-      <BoardComponent
+      <motion.div 
+        animate={{scale:0.9}}
+        transition={{duration: 1.5}}><BoardComponent
         board={board}
         setBoard={setBoard}
         currentPlayer={currentPlayer}
         swapPlayer = {swapPlayer}
-      />
+      /></motion.div>
       <div>
         <LostFigures 
           title="Black"
