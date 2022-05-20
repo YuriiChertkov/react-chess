@@ -7,11 +7,16 @@ import { CellComponent } from "./CellComponent";
 interface BoardProps {
   board: Board;
   setBoard: (board: Board) => void;
-  currentPlayer: Player;
-  swapPlayer: ()=> void;
+  currentPlayer: Player | null;
+  swapPlayer: () => void;
 }
 
-export const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
+export const BoardComponent: FC<BoardProps> = ({
+  board,
+  setBoard,
+  currentPlayer,
+  swapPlayer,
+}) => {
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
   function clickCell(cell: Cell) {
@@ -22,8 +27,11 @@ export const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
     ) {
       selectedCell.moveFigure(cell);
       setSelectedCell(null);
+      swapPlayer();
     } else {
-      setSelectedCell(cell);
+      if (cell.figure?.color === currentPlayer?.color) {
+        setSelectedCell(cell);
+      }
     }
   }
 
@@ -42,6 +50,8 @@ export const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
   }
 
   return (
+    <div>
+    <h3>Current Player: {(currentPlayer?.color.toUpperCase())}</h3>
     <div className="board">
       {board.cells.map((row, index) => (
         <React.Fragment key={index}>
@@ -57,6 +67,7 @@ export const BoardComponent: FC<BoardProps> = ({ board, setBoard }) => {
           ))}
         </React.Fragment>
       ))}
-    </div>
+    </div></div>
+    
   );
 };

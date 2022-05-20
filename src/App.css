@@ -50,3 +50,15 @@
   background-color: rgb(9, 170, 9);
 }
 
+.lost{
+  height: calc(50vh - 60px);
+  padding: 30px;
+  margin-left: 50px;
+  background-color: lightgray;
+}
+
+.lost img {
+  position: absolute;
+  padding-left: 2px;
+}
+

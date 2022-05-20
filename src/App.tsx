@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BoardComponent } from "./components/BoardComponent";
+import { LostFigures } from "./components/LostFigures";
+import { Timer } from "./components/Timer";
 import { Board } from "./models/Board";
 import { Colors } from "./models/Colors";
 import { Player } from "./models/Player";
@@ -25,18 +27,31 @@ const App = () => {
 
   function swapPlayer() {
     setCurrentPlayer(
-      currentPlayer?.color === Colors.BLACK ? blackPlayer : whitePlayer
+      currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer
     );
   }
 
   return (
     <div className="app">
+      <Timer
+      restart={restart}
+      currentPlayer={currentPlayer}
+      />
       <BoardComponent
         board={board}
         setBoard={setBoard}
-        currentPlayer={setCurrentPlayer}
+        currentPlayer={currentPlayer}
         swapPlayer = {swapPlayer}
       />
+      <div>
+        <LostFigures 
+          title="Black"
+          figures={board.lostBlackFigure}/>
+           <LostFigures 
+          title="White"
+          figures={board.lostWhiteFigure}/>
+      </div>
+      
     </div>
   );
 };
